@@ -3,7 +3,7 @@ package sentences;
 import java.util.List;
 import java.util.Random;
 
-import models.Index;
+import objects.Index;
 
 public class SentencesIndex {
 
@@ -157,7 +157,7 @@ public class SentencesIndex {
         }
 
         sentence = sentence.replace("[openingChange]", Double.toString(Math.abs(today.getOpeningChange())));
-        sentence = sentence.replace("[openingPrice]", Double.toString(today.getOpeningPrice()));
+        sentence = sentence.replace("[openingPrice]", Double.toString(today.getOpenPrice()));
         sentence = sentence.replace("[openingChangePercent]", Double.toString(Math.abs(today.getOpeningChangePercent())));
 
         sentence = insertData(sentence, today);
@@ -199,18 +199,18 @@ public class SentencesIndex {
     public static String doThiCayNen(Index index) {
         String sentence = "";
 
-        if(index.getOpeningPrice() < index.getClosingPrice()) {
-            if(index.getClosingPrice() == index.getHighestPrice())
+        if(index.getOpenPrice() < index.getClosePrice()) {
+            if(index.getClosePrice() == index.getHighestPrice())
                 sentence = NEN_XANH[2];
-            else if(index.getHighestPrice() - index.getClosingPrice() <= 1)
+            else if(index.getHighestPrice() - index.getClosePrice() <= 1)
                 sentence = NEN_XANH[1];
             else sentence = NEN_XANH[0];
         }
 
-        if(index.getOpeningPrice() > index.getClosingPrice()) {
-            if(index.getClosingPrice() == index.getLowestPrice())
+        if(index.getOpenPrice() > index.getClosePrice()) {
+            if(index.getClosePrice() == index.getLowestPrice())
                 sentence = NEN_DO[2];
-            else if(index.getClosingPrice() - index.getLowestPrice() <= 1)
+            else if(index.getClosePrice() - index.getLowestPrice() <= 1)
                 sentence = NEN_DO[1];
             else sentence = NEN_DO[0];
         }
@@ -245,10 +245,10 @@ public class SentencesIndex {
         sample = sample.replace("[name]" , index.getName());
         sample = sample.replace("[change]", Double.toString(Math.abs(index.getChangePrice())) );
         sample = sample.replace("[percentChange]", Double.toString(Math.abs(index.getPercentChange())) );
-        sample = sample.replace("[point]", Double.toString(index.getClosingPrice()) );
-        sample = sample.replace("[closingPrice]", Double.toString(index.getOpeningPrice()) );
-        sample = sample.replace("[totalVolume]",Long.toString(index.getTotalVolume()/1000000) );
-        sample = sample.replace("[totalMarket]", Long.toString(index.getTotalMarket()/1000) );
+        sample = sample.replace("[point]", Double.toString(index.getClosePrice()) );
+        sample = sample.replace("[closingPrice]", Double.toString(index.getOpenPrice()) );
+        sample = sample.replace("[totalVolume]",Long.toString(index.getVolume()/1000000) );
+        sample = sample.replace("[totalMarket]", Long.toString(index.getExchangeValue()/1000) );
 
         return sample;
     }
@@ -259,9 +259,9 @@ public class SentencesIndex {
         return sentenceForm[form];
     }
     
-    public static String generateSentences(List<Index> indexList, String stockName) {
+    public static String generateSentences(List<Index> indexList, String indexName) {
 
-        return  "Cập nhật chỉ số " + stockName + " cuối ngày " + indexList.get(0).getDay() + " : " +
+        return  "Lịch sử giao dịch của " + indexName + " tính đến hết ngày " + indexList.get(0).getDay() + ":" +
                 "\n" + moCuaGiaoDich(indexList) +
                 "\n" + chotPhienGiaoDich(indexList.get(0)) +
                 "\n" + soVoiPhienTruoc(indexList) +

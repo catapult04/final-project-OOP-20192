@@ -3,32 +3,32 @@ package crawldata;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Index;
+import objects.Index;
 
 public class GetIndex {
-    public static List<Index> crawlData(String stockName) {
+    public static List<Index> crawlData(String indexName) {
     	
-        Crawler driver = new Crawler("https://s.cafef.vn/Lich-su-giao-dich-" + stockName + "-1.chn#data");
-        driver.gwait(5);
+        Crawler crawler = new Crawler("https://s.cafef.vn/Lich-su-giao-dich-" + indexName + "-1.chn#data");
+        crawler.gwait(5);
 
         List<Index> indexList = new ArrayList<>();
 
         for (int i = 3; i < 10; i++) {
             Index index = new Index();
-            index.setDay(driver.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr["+ i +"]/td[1]"));
-            index.setName(stockName);
-            index.setTotalVolume(driver.changeType("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[5]", 0));
-            index.setTotalMarket(driver.changeType("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[6]", 6));
-            index.setChangePrice(Double.parseDouble(driver.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[3]").substring(0, 5)));
-            index.setOpeningPrice(Double.parseDouble(driver.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[9]")));
-            index.setClosingPrice(Double.parseDouble(driver.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[2]")));
-            index.setHighestPrice(Double.parseDouble(driver.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[10]")));
-            index.setLowestPrice(Double.parseDouble(driver.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[11]")));
+            index.setDay(crawler.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr["+ i +"]/td[1]"));
+            index.setName(indexName);
+            index.setVolume(crawler.changeType("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[5]", 0));
+            index.setExchangeValue(crawler.changeType("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[6]", 6));
+            index.setChangePrice(Double.parseDouble(crawler.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[3]").substring(0, 5)));
+            index.setOpenPrice(Double.parseDouble(crawler.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[9]")));
+            index.setClosePrice(Double.parseDouble(crawler.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[2]")));
+            index.setHighestPrice(Double.parseDouble(crawler.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[10]")));
+            index.setLowestPrice(Double.parseDouble(crawler.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/table[1]/tbody[1]/tr[" + i + "]/td[11]")));
             indexList.add(index);
             index.setPercentChange();
         }
 
-        driver.close();
+        crawler.close();
         return indexList;
     }
 

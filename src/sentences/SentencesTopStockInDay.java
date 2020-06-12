@@ -6,13 +6,13 @@ import java.util.Random;
 import comparator.ClosePriceComparator;
 import comparator.PercentChangeComparator;
 import comparator.SortByTotalVolume;
-import models.TopStockInDay;
+import objects.InDayStock;
 
 public class SentencesTopStockInDay {
     private String[] upPassage = new String[5];
     private String[] downPassage = new String[5];
 
-    public String createUpPassage (TopStockInDay stock) {
+    public String createUpPassage (InDayStock stock) {
         upPassage[0] = "Cổ phiếu " + stock.getName() + " đã có bước nhảy vọt với mức tăng " +
                 stock.getPercentChange() + "%, hay " + stock.getChangePrice() + " điểm.\n" +
                 "Những sự tăng trưởng như vậy đã mang đến màu sắc tích cực cho thị trường chứng khoán, "
@@ -45,7 +45,7 @@ public class SentencesTopStockInDay {
         return upPassage[random.nextInt(4)];
     }
 
-    public String createDownPassage (TopStockInDay stock) {
+    public String createDownPassage (InDayStock stock) {
 
         downPassage[0] = "Mã cổ phiếu giảm sâu nhất là: " + stock.getName() + " đã giảm"
                 + -stock.getPercentChange() + "% tức " + -stock.getChangePrice() + " điểm. Đây được \n" +
@@ -73,10 +73,10 @@ public class SentencesTopStockInDay {
         return downPassage[random.nextInt(4)];
     }
 
-    public String comment(List<TopStockInDay> list) {
+    public String comment(List<InDayStock> list) {
         String strShow5, strShow6, strShow7;
         double total = 0;
-        for (TopStockInDay topStockInDay : list) {
+        for (InDayStock topStockInDay : list) {
             total += topStockInDay.getTotalVolume();
         }
         strShow5 = ("\nDựa vào bảng trên ta có những thông tin tổng quan sau:\nCác mã thay đổi một lượng " +
@@ -97,7 +97,7 @@ public class SentencesTopStockInDay {
     }
     
     //Sinh câu với mã tăng
-    public static String upStock(List<TopStockInDay> upList) {
+    public static String upStock(List<InDayStock> upList) {
         upList.sort(new PercentChangeComparator());
         SentencesTopStockInDay cr = new SentencesTopStockInDay();
         String strUp;
@@ -115,7 +115,7 @@ public class SentencesTopStockInDay {
     }
 
     // Sinh câu với mã giảm
-    public static String downStock(List<TopStockInDay> downList) {
+    public static String downStock(List<InDayStock> downList) {
         downList.sort(new PercentChangeComparator());
         SentencesTopStockInDay cr = new SentencesTopStockInDay();
         String strDown;

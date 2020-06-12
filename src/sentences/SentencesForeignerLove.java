@@ -3,7 +3,7 @@ package sentences;
 import java.util.List;
 import java.util.Random;
 
-import models.TopStockForeignersLove;
+import objects.TopForeignersStock;
 
 public class SentencesForeignerLove {
 	
@@ -82,7 +82,7 @@ public class SentencesForeignerLove {
 	}
 	
 	//mô tả dữ liệu
-	public static String describeData(List<TopStockForeignersLove> lst) {
+	public static String describeData(List<TopForeignersStock> lst) {
 		String s = getRandom(CAU_1)+getRandom(CAU_2)+getRandom(CAU_3)+getRandom(CAU_4)+getRandom(CAU_5)+getRandom(CAU_6)+getRandom(CAU_7);
 		for (int i = 0; i < 5; ++i) {
 			s = s.replace("[name "+i+"]", lst.get(i).getName());
@@ -96,17 +96,17 @@ public class SentencesForeignerLove {
 	}
 	
 	//nhận xét dữ liệu
-	public static String commentData(List<TopStockForeignersLove> lst) {
+	public static String commentData(List<TopForeignersStock> lst) {
 		String s;
-		List<TopStockForeignersLove> topUpper = TopStockForeignersLove.topUpper(lst);
+		List<TopForeignersStock> topUpper = TopForeignersStock.topUpper(lst);
 		if (topUpper.size() == 0)
 			s = CAU_8[1]+getRandom(CAU_9);
 		else
 			s = CAU_8[0]+getRandom(CAU_9);
-		s = s.replace("[overview]", TopStockForeignersLove.overview(lst));
+		s = s.replace("[overview]", TopForeignersStock.overview(lst));
 		if (topUpper.size() > 0) {
 			StringBuilder name = new StringBuilder();
-			for (TopStockForeignersLove j: topUpper)
+			for (TopForeignersStock j: topUpper)
 				name.append(j.getName()).append(", ");
 			s = s.replace("[name]", name.toString());
 		}
@@ -116,7 +116,7 @@ public class SentencesForeignerLove {
 	}
 	
 	//sinh đoạn văn
-	public static String generateSentences(List<TopStockForeignersLove> lst) {
+	public static String generateSentences(List<TopForeignersStock> lst) {
 		return describeData(lst) + commentData(lst);
 	}
 

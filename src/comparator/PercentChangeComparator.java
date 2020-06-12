@@ -2,13 +2,13 @@ package comparator;
 
 import java.util.Comparator;
 
-import models.TopStockInDay;
+import objects.InDayStock;
 
-public class PercentChangeComparator implements Comparator<TopStockInDay> {
+public class PercentChangeComparator implements Comparator<InDayStock> {
 
 	// sắp xếp theo % thay đổi
     @Override
-    public int compare(TopStockInDay o1, TopStockInDay o2) {
+    public int compare(InDayStock o1, InDayStock o2) {
         double res = o1.getPercentChange() - o2.getPercentChange();
         if (res > 1){
             return -1;

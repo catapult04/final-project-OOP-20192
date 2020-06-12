@@ -3,11 +3,11 @@ package crawldata;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.TopStockInDay;
+import objects.InDayStock;
 
-public class GetTopStockInDay {
+public class GetInDayStock {
 	
-	public static List <TopStockInDay> crawlData(String updown) {
+	public static List <InDayStock> crawlData(String updown) {
 		
 		// mở trang web và khởi tạo list
 		Crawler driver = new Crawler("https://s.cafef.vn/TraCuuLichSu2/1/HOSE/" + Crawler.getDay() + ".chn");
@@ -22,11 +22,11 @@ public class GetTopStockInDay {
 			i = 0;
 		}
 		
-		List <TopStockInDay> topStockInDayList = new ArrayList <TopStockInDay>();
+		List <InDayStock> topStockInDayList = new ArrayList <InDayStock>();
 		
 		// lấy dữ liệu từ web và gán cho thuộc tính của đối tượng
 		for (int j=1;j<=5;j++) {
-			TopStockInDay topday = new TopStockInDay();
+			InDayStock topday = new InDayStock();
 			topday.setName(driver.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/table[1]/tbody[1]/tr["+ j +"]/td[1]"));
 			topday.setPercentChange(Double.parseDouble(driver.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/table[1]/tbody[1]/tr["+ j +"]/td[4]").substring(6 + i, 10 + i)));
 			topday.setChangePrice(Double.parseDouble(driver.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/table[1]/tbody[1]/tr["+ j +"]/td[4]").substring(0, 5)));

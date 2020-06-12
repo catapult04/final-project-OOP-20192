@@ -2,12 +2,12 @@ package comparator;
 
 import java.util.Comparator;
 
-import models.TopStockInDay;
+import objects.InDayStock;
 
-public class ClosePriceComparator implements Comparator<TopStockInDay> {
+public class ClosePriceComparator implements Comparator<InDayStock> {
 
     @Override
-    public int compare(TopStockInDay o1, TopStockInDay o2) {
+    public int compare(InDayStock o1, InDayStock o2) {
         double res = o1.getClosePrice() - o2.getClosePrice();
         if (res > 1){
             return -1;// Không đổi chỗ

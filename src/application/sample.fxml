@@ -28,24 +28,24 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="187.0" prefHeight="40.0" prefWidth="223.0" text="Cổ phiếu hot:">
+      <Label layoutX="20.0" layoutY="187.0" prefHeight="40.0" prefWidth="223.0" text="Các cổ phiếu nổi bật:">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <ComboBox id="exchangeBox" fx:id="exchangeBox" layoutX="254.0" layoutY="112.0" prefHeight="31.0" prefWidth="182.0" promptText="Chọn sàn giao dịch" />
-      <Button fx:id="buttonTop10" layoutX="449.0" layoutY="112.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="79.0" text="Top 10" />
+      <ComboBox id="exchangeBox" fx:id="exchangeBox" layoutX="254.0" layoutY="112.0" prefHeight="31.0" prefWidth="223.0" promptText="Chọn sàn giao dịch" />
+      <Button fx:id="buttonTop10" layoutX="489.0" layoutY="112.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="79.0" text="Top 10" />
       <Button fx:id="buttonTangmanh" layoutX="254.0" layoutY="152.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="98.0" text="Tăng mạnh" />
       <Button fx:id="buttonGiammanh" layoutX="369.0" layoutY="152.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="104.0" text="Giảm mạnh" />
       <Button fx:id="buttonTrongtuan" layoutX="254.0" layoutY="192.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="98.0" text="Trong tuần" />
       <Button fx:id="buttonTrongthang" layoutX="369.0" layoutY="192.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="104.0" text="Trong tháng" />
       <Button fx:id="buttonTrongquy" layoutX="491.0" layoutY="192.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="98.0" text="Trong quý" />
       <Button fx:id="buttonTrongnam" layoutX="600.0" layoutY="192.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="98.0" text="Trong năm" />
-      <TextArea id="resultArea" fx:id="sentencesArea" layoutX="14.0" layoutY="309.0" prefHeight="297.0" prefWidth="974.0" wrapText="true">
+      <TextArea id="resultArea" fx:id="sentencesArea" layoutX="14.0" layoutY="272.0" prefHeight="334.0" prefWidth="974.0" wrapText="true">
          <font>
             <Font size="16.0" />
          </font></TextArea>
-      <Button fx:id="buttonXem" layoutX="449.0" layoutY="72.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Xem" />
-      <TextField fx:id="stockField" layoutX="254.0" layoutY="72.0" prefHeight="31.0" prefWidth="182.0" promptText="Nhập mã chứng khoán" />
+      <Button fx:id="buttonXem" layoutX="489.0" layoutY="72.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Xem" />
+      <TextField fx:id="stockField" layoutX="254.0" layoutY="72.0" prefHeight="31.0" prefWidth="223.0" promptText="Nhập mã index (VD: VNINDEX))" />
    </children>
 </Pane>

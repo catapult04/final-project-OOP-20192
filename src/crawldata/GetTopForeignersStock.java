@@ -3,21 +3,21 @@ package crawldata;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.TopStockForeignersLove;
+import objects.TopForeignersStock;
 
-public class GetTopStockForeignersLove {
+public class GetTopForeignersStock {
 	
-	public static List <TopStockForeignersLove> crawlData() {
+	public static List <TopForeignersStock> crawlData() {
 		
 		// mở trang web và khởi tạo list
 		Crawler driver = new Crawler("https://s.cafef.vn/TraCuuLichSu2/3/HOSE/" + Crawler.getDay() + ".chn");
 		driver.gwait(5);
 
-		List <TopStockForeignersLove> topfllist = new ArrayList <>();
+		List <TopForeignersStock> topfllist = new ArrayList <>();
 
 		// lấy dữ liệu từ web và gán cho thuộc tính của đối tượng
 		for (int i=1;i<=10;i++) {
-			TopStockForeignersLove topforeign = new TopStockForeignersLove(); 
+			TopForeignersStock topforeign = new TopForeignersStock(); 
 			topforeign.setName(driver.findElement("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/table[1]/tbody[1]/tr["+ i +"]/td[1]"));
 			topforeign.setTotalVolumeSell(driver.changeType("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/table[1]/tbody[1]/tr["+ i +"]/td[4]", 0));
 			topforeign.setTotalVolumeBuy(driver.changeType("/html[1]/body[1]/form[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/table[1]/tbody[1]/tr["+ i +"]/td[2]", 0));

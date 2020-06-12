@@ -2,13 +2,13 @@ package comparator;
 
 import java.util.Comparator;
 
-import models.GrowthStock;
+import objects.HotStock;
 
-public class PercentChangeMaxComparator implements Comparator<GrowthStock> {
+public class PercentChangeMaxComparator implements Comparator<HotStock> {
 
 	// sắp xếp theo PercentChangeMax
 	@Override
-	public int compare(GrowthStock o1, GrowthStock o2) 
+	public int compare(HotStock o1, HotStock o2) 
 	{
 		return Double.compare(o1.getPercentChangeMax(), o2.getPercentChangeMax());
 	}

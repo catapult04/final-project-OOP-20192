@@ -1,9 +1,13 @@
-package models;
+package objects;
 public class Stock {
-
 	private String name;
 	private double percentChange;
 
+	
+	public Stock() {
+	}
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -18,8 +22,5 @@ public class Stock {
 
 	public void setPercentChange(double percentChange) {
 		this.percentChange = percentChange;
-	}
-	
-	public Stock() {
 	}
 }

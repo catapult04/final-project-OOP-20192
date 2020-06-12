@@ -1,6 +1,6 @@
 package application;
 
-import 	java.net.URL;
+import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -9,8 +9,8 @@ import crawldata.GetGrowthStockInQuarter;
 import crawldata.GetGrowthStockInWeek;
 import crawldata.GetGrowthStockInYear;
 import crawldata.GetIndex;
-import crawldata.GetTopStockForeignersLove;
-import crawldata.GetTopStockInDay;
+import crawldata.GetTopForeignersStock;
+import crawldata.GetInDayStock;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,16 +19,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-import models.GrowthStock;
-import models.Index;
-import models.TopStockForeignersLove;
-import models.TopStockInDay;
+import objects.HotStock;
+import objects.Index;
+import objects.TopForeignersStock;
+import objects.InDayStock;
 import sentences.SentencesForeignerLove;
-import sentences.SentencesGrowthStockInMonth;
-import sentences.SentencesGrowthStockInQuarter;
-import sentences.SentencesGrowthStockInWeek;
-import sentences.SentencesGrowthStockInYear;
+import sentences.SentencesHotStock;
 import sentences.SentencesIndex;
 import sentences.SentencesTopStockInDay;
 import table.TableForeignerLove;
@@ -73,50 +69,54 @@ public class Controller implements Initializable{
 		});
 		
 		buttonTop10.setOnAction(event -> {
-			List<TopStockForeignersLove> foreignerList = GetTopStockForeignersLove.crawlData();
+			List<TopForeignersStock> foreignerList = GetTopForeignersStock.crawlData();
 			String passage = SentencesForeignerLove.generateSentences(foreignerList);;
             sentencesArea.setText(passage);
             new TableForeignerLove(foreignerList);
 		});
 		
 		buttonTangmanh.setOnAction(event -> {
-			List<TopStockInDay> upStockList = GetTopStockInDay.crawlData("Up");
+			List<InDayStock> upStockList = GetInDayStock.crawlData("Up");
 			String passage = SentencesTopStockInDay.upStock(upStockList);
             sentencesArea.setText(passage);
             new TableTopStockInDay(upStockList, "Up");
 		});
 		
 		buttonGiammanh.setOnAction(event -> {
-			List<TopStockInDay> downStockList = GetTopStockInDay.crawlData("Down");
+			List<InDayStock> downStockList = GetInDayStock.crawlData("Down");
 			String passage = SentencesTopStockInDay.downStock(downStockList);
             sentencesArea.setText(passage);
             new TableTopStockInDay(downStockList, "Down");
 		});
 		
 		buttonTrongtuan.setOnAction(event -> {
-			List<GrowthStock> growthList = GetGrowthStockInWeek.crawlData();
-			String passage = SentencesGrowthStockInWeek.generateSentences(growthList);
+			SentencesHotStock sentencesGrowthStockInWeek = new SentencesHotStock("tuần");
+			List<HotStock> growthList = GetGrowthStockInWeek.crawlData();
+			String passage = sentencesGrowthStockInWeek.generateSentences(growthList);
 			sentencesArea.setText(passage);
 			new TableGrowthStockInWeek(growthList);
 		});
 		
 		buttonTrongthang.setOnAction(event -> {
-			List<GrowthStock> growthList1 = GetGrowthStockInMonth.crawlData();
-			String passage = SentencesGrowthStockInMonth.generateSentences(growthList1);
+			SentencesHotStock sentencesGrowthStockInMonth = new SentencesHotStock("tháng");
+			List<HotStock> growthList1 = GetGrowthStockInMonth.crawlData();
+			String passage = sentencesGrowthStockInMonth.generateSentences(growthList1);
 			sentencesArea.setText(passage);
 			new TableGrowthStockInMonth(growthList1);
 		});
 		
 		buttonTrongquy.setOnAction(event -> {
-			List<GrowthStock> growthList3 = GetGrowthStockInQuarter.crawlData();
-			String passage = SentencesGrowthStockInQuarter.generateSentences(growthList3);
+			SentencesHotStock sentencesGrowthStockInQuarter= new SentencesHotStock("quý");
+			List<HotStock> growthList3 = GetGrowthStockInQuarter.crawlData();
+			String passage = sentencesGrowthStockInQuarter.generateSentences(growthList3);
 			sentencesArea.setText(passage);
 			new TableGrowthStockInQuarter(growthList3);
 		});
 		
 		buttonTrongnam.setOnAction(event -> {
-			List<GrowthStock> growthList2 = GetGrowthStockInYear.crawlData();
-			String passage = SentencesGrowthStockInYear.generateSentences(growthList2);
+			SentencesHotStock sentencesGrowthStockInYear = new SentencesHotStock("năm");
+			List<HotStock> growthList2 = GetGrowthStockInYear.crawlData();
+			String passage = sentencesGrowthStockInYear.generateSentences(growthList2);
 			sentencesArea.setText(passage);
 			new TableGrowthStockInYear(growthList2);
 		});
