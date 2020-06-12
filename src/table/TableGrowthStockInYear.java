@@ -1,7 +1,9 @@
 package table;
 
-import entity.GrowthStock;
 import javax.swing.*;
+
+import models.GrowthStock;
+
 import java.util.List;
 import java.awt.Font;
 import java.awt.event.ActionListener;

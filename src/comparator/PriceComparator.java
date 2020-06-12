@@ -2,7 +2,7 @@ package comparator;
 
 import java.util.Comparator;
 
-import entity.GrowthStock;
+import models.GrowthStock;
 
 public class PriceComparator implements Comparator<GrowthStock> {
 

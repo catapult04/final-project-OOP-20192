@@ -1,8 +1,9 @@
 package sentences;
 
-import entity.Index;
 import java.util.List;
 import java.util.Random;
+
+import models.Index;
 
 public class SentencesIndex {
 
@@ -77,8 +78,8 @@ public class SentencesIndex {
     };
 
     public static final String[] TIEP_TUC_GIAM = {
-            "Tiếp tục không khí ảm đạm như hôm qua, mở cửa hôm nay, [name] giảm còn [openingChange], tương đương [openingPerCentChange]%" +
-                    "đạt [openingPrice] điểm"
+            "Tiếp tục không khí ảm đạm như hôm qua, mở cửa hôm nay, [name] giảm còn [openingChange], "
+            + "tương đương [openingChangePercent]%, đạt [openingPrice] điểm"
     };
 
     // so voi phien truoc
@@ -258,10 +259,9 @@ public class SentencesIndex {
         return sentenceForm[form];
     }
     
-    //minhstart
-    public static String generateSentences(List<Index> indexList, String indexName) {
+    public static String generateSentences(List<Index> indexList, String stockName) {
 
-        return  "Cập nhật chỉ số " + indexName + " cuối ngày " + indexList.get(0).getDay() + " : " +
+        return  "Cập nhật chỉ số " + stockName + " cuối ngày " + indexList.get(0).getDay() + " : " +
                 "\n" + moCuaGiaoDich(indexList) +
                 "\n" + chotPhienGiaoDich(indexList.get(0)) +
                 "\n" + soVoiPhienTruoc(indexList) +

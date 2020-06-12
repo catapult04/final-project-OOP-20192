@@ -1,7 +1,8 @@
 package comparator;
 
 import java.util.Comparator;
-import entity.TopStockInDay;
+
+import models.TopStockInDay;
 
 public class SortByTotalVolume implements Comparator<TopStockInDay> {
 

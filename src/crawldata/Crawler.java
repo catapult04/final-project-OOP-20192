@@ -10,7 +10,6 @@ import org.openqa.selenium.interactions.Actions;
 public class Crawler {
 	private WebDriver driver;
 
-	// Phương thức khởi tạo
 	public Crawler(String link) {
 		System.setProperty("webdriver.chrome.driver","chromedriver.exe");
 		this.driver = new ChromeDriver();

@@ -1,7 +1,9 @@
 package table;
 
-import entity.TopStockForeignersLove;
 import javax.swing.*;
+
+import models.TopStockForeignersLove;
+
 import java.util.List;
 import java.awt.Font;
 import java.awt.event.ActionListener;

@@ -2,7 +2,8 @@ package crawldata;
 
 import java.util.ArrayList;
 import java.util.List;
-import entity.TopStockInDay;
+
+import models.TopStockInDay;
 
 public class GetTopStockInDay {
 	

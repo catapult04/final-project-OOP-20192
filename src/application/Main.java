@@ -1,3 +1,5 @@
+//--module-path D:\minh\javafx-sdk-11.0.2\bin --add-modules javafx.controls,javafx.fxml
+
 package application;
 	
 import java.io.IOException;

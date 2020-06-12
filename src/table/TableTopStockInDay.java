@@ -1,7 +1,9 @@
 package table;
 
-import entity.TopStockInDay;
 import javax.swing.*;
+
+import models.TopStockInDay;
+
 import java.util.List;
 import java.awt.Font;
 import java.awt.event.ActionListener;

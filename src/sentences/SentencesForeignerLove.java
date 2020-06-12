@@ -2,7 +2,8 @@ package sentences;
 
 import java.util.List;
 import java.util.Random;
-import entity.TopStockForeignersLove;
+
+import models.TopStockForeignersLove;
 
 public class SentencesForeignerLove {
 	

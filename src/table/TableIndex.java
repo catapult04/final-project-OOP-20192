@@ -1,7 +1,9 @@
 package table;
 
-import entity.Index;
 import javax.swing.*;
+
+import models.Index;
+
 import java.util.List;
 import java.awt.Font;
 import java.awt.event.ActionListener;

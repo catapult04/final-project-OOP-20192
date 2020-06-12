@@ -2,7 +2,8 @@ package crawldata;
 
 import java.util.ArrayList;
 import java.util.List;
-import entity.TopStockForeignersLove;
+
+import models.TopStockForeignersLove;
 
 public class GetTopStockForeignersLove {
 	

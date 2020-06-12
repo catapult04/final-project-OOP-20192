@@ -6,78 +6,71 @@ import java.util.Random;
 import comparator.ClosePriceComparator;
 import comparator.PercentChangeComparator;
 import comparator.SortByTotalVolume;
-import entity.TopStockInDay;
+import models.TopStockInDay;
 
 public class SentencesTopStockInDay {
+    private String[] upPassage = new String[5];
+    private String[] downPassage = new String[5];
 
-    private String[] stringUp = new String[5];
-    private String[] stringDown = new String[5];
-
-    public String createUpSentences(TopStockInDay ts) {
-
-        stringUp[0] = ("Mã cổ phiếu tăng trưởng manh mẽ nhất là: " + ts.getName() + " tăng " +
-                ts.getPercentChange() + "% tức " + ts.getChangePrice() + " điểm.\n" +
-                "Đây là tín hiệu rất lạc quan trong bối cảnh hiện nay khi mà rất nhiều \n" +
-                "cổ phiếu đang rớt giá thảm hại. Rất mong cổ phiếu này duy trì được đà tăng \n" +
-                "ấn tượng như trên thúc đẩy nền kinh tế phát triển.");
+    public String createUpPassage (TopStockInDay stock) {
+        upPassage[0] = "Cổ phiếu " + stock.getName() + " đã có bước nhảy vọt với mức tăng " +
+                stock.getPercentChange() + "%, hay " + stock.getChangePrice() + " điểm.\n" +
+                "Những sự tăng trưởng như vậy đã mang đến màu sắc tích cực cho thị trường chứng khoán, "
+                + "và chúng ta hoàn toàn có lí do để tin tưởng vào điều tương tự ở những phiên giao dịch tiếp theo.";
         
-        stringUp[1] = ("Trong số đó, cổ phiếu " + ts.getName() + " tăng trưởng ấn tượng nhất khi đã tăng "
-                + ts.getPercentChange() + "% tương ứng với: " + ts.getChangePrice() + " điểm. \n" +
-                "Đây là tín hiệu rất lạc quan trong bối cảnh hiện nay khi mà rất nhiều \n" +
-                "cổ phiếu đang trên đà lao dốc. Rất mong cổ phiếu này duy trì được đà  \n" +
-                "tăng ấn tượng như trên thúc đẩy nền kinh tế phát triển.");
+        upPassage[1] = "Tín hiệu tích cực nhất trong ngày hôm nay phải kể đến cổ phiếu " 
+        		+ stock.getName() + ", với mức tăng trưởng lên tới "
+                + stock.getPercentChange() + "% , tức " + stock.getChangePrice() + " điểm. \n" +
+                "Chúng ta có thể thấy rõ tín hiệu lạc quan của " + stock.getName() 
+                + " khi mà hiện tại không phải cổ phiếu nào cũng đạt được mức tăng trưởng ấn tượng như vậy, "
+                + "thậm chí còn rớt giá";
         
-        stringUp[2] = ("Tín hiêu tích cực nhất trong ngày hôm nay là mã " + ts.getName() + " khi đã tăng "
-                + ts.getPercentChange() + "% ứng với " + ts.getChangePrice() + " điểm.\n" +
-                "Đây là một trong những cú hích thúc đẩy thị trường đi lên trong bối cảnh nhiều mã \n" +
-                "tụt giá rất sâu. Rất mong cổ phiếu này duy trì được đà tăng ấn tượng như trên thúc \n" +
-                "đẩy nền kinh tế phát triển.");
+        upPassage[2] = "Trong số đó, cổ phiếu" + stock.getName() + " đã mang đến sự bất ngờ lớn khi đã tăng "
+                + stock.getPercentChange() + "% ứng với " + stock.getChangePrice() + " điểm.\n" +
+                "Đây là một trong những cú hích quan trọng thúc đẩy thị trường chứng khoán nói riêng và "
+                + "nền kinh tế nói chung trong giai đoạn khá ảm đạm hiện nay";
 
-        stringUp[3] = ("Nổi bật nhất là mã " + ts.getName() + " khi đã tăng " + ts.getPercentChange()
-                + "% tương đương " + ts.getChangePrice() + " điểm. Đây là điều rất tích \n" +
+        upPassage[3] = "Nổi bật nhất là mã " + stock.getName() + " khi đã tăng " + stock.getPercentChange()
+                + "% tương đương " + stock.getChangePrice() + " điểm. Đây là điều rất tích \n" +
                 "cực trong bối cảnh chung hiện nay.  Rất mong cổ phiếu này duy trì được đà tăng ấn \n" +
-                "tượng như trên thúc đẩy nền kinh tế phát triển.");
+                "tượng như trên thúc đẩy nền kinh tế phát triển.";
         
-        stringUp[4] = ("Thị trường đóng cửa với tín hiệu lạc quan nhất thuộc về mã " + ts.getName()
-                + " khi đã tăng " + ts.getPercentChange() + "% ứng với sô điểm: " + ts.getChangePrice() +
+        upPassage[4] = "Thị trường đóng cửa với tín hiệu lạc quan nhất thuộc về mã " + stock.getName()
+                + " khi đã tăng " + stock.getPercentChange() + "% ứng với sô điểm: " + stock.getChangePrice() +
                 "\nĐây được coi như là điều tích cực hiếm hoi xua đi không khí ảm đạm của \n" +
                 "thị trường ngày hôm nay. Rất mong cổ phiếu này duy trì được đà tăng ấn tượng \n" +
-                "như trên thúc đẩy nền kinh tế phát triển.");
+                "như trên thúc đẩy nền kinh tế phát triển.";
 
         Random random = new Random();
-        int x = random.nextInt(4);
-
-        return stringUp[x];
+        return upPassage[random.nextInt(4)];
     }
 
-    public String createDownSentences(TopStockInDay ts) {
+    public String createDownPassage (TopStockInDay stock) {
 
-        stringDown[0] = ("Mã cổ phiếu giảm sâu nhất là: " + ts.getName() + " đã giảm"
-                + -ts.getPercentChange() + "% tức " + -ts.getChangePrice() + " điểm. Đây được \n" +
+        downPassage[0] = "Mã cổ phiếu giảm sâu nhất là: " + stock.getName() + " đã giảm"
+                + -stock.getPercentChange() + "% tức " + -stock.getChangePrice() + " điểm. Đây được \n" +
                 "coi như sự mất mát rất lớn của ngày giao dịch hôm nay. Sau phiên giao  \n" +
-                "dịch ngày hôm nay mã cổ phiếu này sẽ tăng điểm trở lại.");
-        stringDown[1] = ("Trong số đó, cổ phiếu " + ts.getName() + " gây thất vọng nhất khi đã giảm "
-                + -ts.getPercentChange() + "% với số điểm đã mất là: " + -ts.getChangePrice() + "\nĐiều này đã " +
+                "dịch ngày hôm nay mã cổ phiếu này sẽ tăng điểm trở lại.";
+        downPassage[1] = "Trong số đó, cổ phiếu " + stock.getName() + " gây thất vọng nhất khi đã giảm "
+                + -stock.getPercentChange() + "% với số điểm đã mất là: " + -stock.getChangePrice() + "\nĐiều này đã " +
                 "gây ra tâm lý hoang mang không chỉ cho nhà đầu tư mà còn ảnh hưởng tới rất nhiều\n" +
                 "mã cổ phiếu khác. Sau phiên giao dịch ngày hôm nay hi vọng mã cổ phiếu này sẽ " +
-                "tăng điểm trở lại.");
-        stringDown[2] = ("Không mấy vui vẻ nhất là mã " + ts.getName() + " khi đã giảm " + -ts.getPercentChange()
-                + "% ứng với " + -ts.getChangePrice() + " điểm. \nĐây sẽ là cú đấm mạnh kìm hãm sự phát " +
+                "tăng điểm trở lại.";
+        downPassage[2] = "Không mấy vui vẻ nhất là mã " + stock.getName() + " khi đã giảm " + -stock.getPercentChange()
+                + "% ứng với " + -stock.getChangePrice() + " điểm. \nĐây sẽ là cú đấm mạnh kìm hãm sự phát " +
                 "triển của mã cổ phiếu này. \nSau phiên giao dịch ngày hôm nay hi vọng mã cổ phiếu" +
-                " này sẽ tăng điểm trở lại.");
-        stringDown[3] = ("Thị trường đóng cửa với tín hiệu bi quan nhất thuộc về mã " + ts.getName()
-                + " khi đã giảm " + -ts.getPercentChange() + "% với số điểm: " + -ts.getChangePrice() +
+                " này sẽ tăng điểm trở lại.";
+        downPassage[3] = "Thị trường đóng cửa với tín hiệu bi quan nhất thuộc về mã " + stock.getName()
+                + " khi đã giảm " + -stock.getPercentChange() + "% với số điểm: " + -stock.getChangePrice() +
                 "\nĐiều này sẽ khiến cho tâm lý rất nhiều nhà đầu tư đi xuống kéo theo nhiều hệ lũy.\n" +
-                "Sau phiên giao dịch ngày hôm nay hi vọng mã cổ phiếu này sẽ tăng điểm trở lại.");
-        stringDown[4] = ("Mã cổ phiếu buồn nhất trong ngày hôm nay là " + ts.getName() + " khi đã giảm " +
-                -ts.getPercentChange() + "% và đã mất " + -ts.getChangePrice() + " điểm.\n" +
+                "Sau phiên giao dịch ngày hôm nay hi vọng mã cổ phiếu này sẽ tăng điểm trở lại.";
+        downPassage[4] = "Mã cổ phiếu buồn nhất trong ngày hôm nay là " + stock.getName() + " khi đã giảm " +
+                -stock.getPercentChange() + "% và đã mất " + -stock.getChangePrice() + " điểm.\n" +
                 "Đây là có một mã chứng khoán lớn có ý nghĩa quan trọng đối với thị trường.\n" +
-                "Sau phiên giao dịch ngày hôm nay hi vọng mã cổ phiếu này sẽ tăng điểm trở lại.");
+                "Sau phiên giao dịch ngày hôm nay hi vọng mã cổ phiếu này sẽ tăng điểm trở lại.";
 
         Random random = new Random();
-        int x = random.nextInt(4);
-
-        return stringDown[x];
+        return downPassage[random.nextInt(4)];
     }
 
     public String comment(List<TopStockInDay> list) {
@@ -114,7 +107,7 @@ public class SentencesTopStockInDay {
             strUp = ("\nTổng kết lại đây là những mã cổ phiếu mới nổi,còn nhỏ nhưng đã tăng " +
                     "trưởng rất tốt và rất nhiều tiềm năng.");
             strUp = cr.comment(upList) +
-                    cr.createUpSentences(upList.get(0)) + strUp;
+                    cr.createUpPassage (upList.get(0)) + strUp;
         } else {
             strUp = ("Hôm nay thị trường đi xuống, không có mã cổ phiếu nào tăng điểm.");
         }
@@ -131,7 +124,7 @@ public class SentencesTopStockInDay {
             strDown = ("\nNói chung đây là các mã không quá lớn nên chưa ảnh hưởng nhiều tới toàn bộ thị trường,\n" +
                     "các nhà đầu xin hãy bình tĩnh cân nhắc đầu tư trong thời điểm này.");
             strDown = cr.comment(downList) +
-                      cr.createDownSentences(downList.get(0)) + strDown;
+                      cr.createDownPassage(downList.get(0)) + strDown;
         } else {
             strDown = ("Hôm nay quả thật là ngày rất vui khi không có mã cổ phiếu nào giảm điểm.");
         }

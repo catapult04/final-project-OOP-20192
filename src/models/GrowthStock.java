@@ -1,12 +1,11 @@
-package entity;
+package models;
 
 public class GrowthStock extends Stock {
 	
-    // link web: https://s.cafef.vn/thong-ke/san-all.chn với dữ liệu tuần
-	//           https://s.cafef.vn/thong-ke/timeline-1-thang/san-all.chn với dữ liệu tháng
-    private double price; // giá 
-    private double totalVolume; // khối lượng
-    private double percentChangeMax; // % thay đổi
+    private double price;
+    private double percentChangeMax;
+    private double totalVolume;
+     // % thay đổi
     private double totalAsset; // vốn hóa
     private double avgTrade; // giao dịch trung bình phiên
 

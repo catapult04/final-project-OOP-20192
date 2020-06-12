@@ -9,7 +9,7 @@ import comparator.PercentChangeMaxComparator;
 import comparator.PriceComparator;
 import comparator.TotalAssetComparator;
 import comparator.TotalVolumeComparator;
-import entity.GrowthStock;
+import models.GrowthStock;
 
 public class SentencesGrowthStockInMonth {
 
